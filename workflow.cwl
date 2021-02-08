@@ -43,7 +43,7 @@ steps:
       
     
   summarize:
-    run: test_summarize.cwl
+    run: summarize.cwl
     in:
       sample_name: sample_name
       metagenome_trim_memory: metagenome_trim_memory
