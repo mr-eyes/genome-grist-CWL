@@ -26,9 +26,13 @@ inputs:
   metagenome_trim_memory: float
   sourmash_database_glob_pattern:
     type: File
-      
+
 outputs:
   html_report:
     type: File
     outputBinding:
       glob: outputs.tutorial/reports/*.html
+  fastqDumpError:
+    type: File
+    outputBinding:
+      glob: $(runtime.outdir)/*txt
