@@ -31,8 +31,4 @@ outputs:
   html_report:
     type: File
     outputBinding:
-      glob: outputs.tutorial/reports/*.html
-  fastqDumpError:
-    type: File
-    outputBinding:
-      glob: $(runtime.outdir)/*txt
+      glob: outputs.tutorial/reports/report-$(inputs.sample_name).html

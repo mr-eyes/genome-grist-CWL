@@ -19,10 +19,6 @@ outputs:
   summarize_html:
     type: File
     outputSource: summarize/html_report
-
-  fastqDumpErrorTXT:
-    type: File
-    outputSource: summarize/fastqDumpError
     
 
 steps:
@@ -41,4 +37,4 @@ steps:
       metagenome_trim_memory: metagenome_trim_memory
       outdir: outdir
       sourmash_database_glob_pattern: curl/zip_file
-    out: [ html_report, fastqDumpError ]
+    out: [ html_report ]
