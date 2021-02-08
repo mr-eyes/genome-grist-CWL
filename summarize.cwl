@@ -2,7 +2,7 @@
 
 cwlVersion: v1.0
 class: CommandLineTool
-baseCommand: [genome-grist, run, "conf-tutorial.yml", "summarize"]
+baseCommand: [genome-grist, run, "conf-tutorial.yml", "summarize", "-j", "4"]
 
 hints:
   DockerRequirement:
