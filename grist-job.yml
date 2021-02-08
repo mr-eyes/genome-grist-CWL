@@ -13,7 +13,8 @@ metagenome_trim_memory: 1e9
 grist_directory: grist
 curl_url: https://osf.io/4n3m5/download
 curl_output: gtdb-r95.nucleotide-k31-scaled1000.sbt.zip
-sample_name: HSMA33MX
+# sample_name: HSMA33MX
+sample_name: SRX10015777
 conf_file:
     class: File
     path: conf-tutorial.yml
