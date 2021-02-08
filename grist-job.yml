@@ -14,8 +14,6 @@ grist_directory: grist
 curl_url: https://osf.io/4n3m5/download
 curl_output: gtdb-r95.nucleotide-k31-scaled1000.sbt.zip
 sample_name: HSMA33MX
-showconf_cmd: showconf
-summarize_command: summarize
 conf_file:
     class: File
     path: conf-tutorial.yml
