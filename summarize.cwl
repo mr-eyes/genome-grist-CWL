@@ -18,7 +18,7 @@ requirements:
             - $(inputs.sample_name)
           outdir: $(inputs.outdir)
           metagenome_trim_memory: $(inputs.metagenome_trim_memory)
-          sourmash_database_glob_pattern: $(inputs.sourmash_database_glob_pattern.path)
+          sourmash_database_glob_pattern: $(inputs.sourmash_database_glob_pattern.basename)
 
 inputs: 
   sample_name: string
