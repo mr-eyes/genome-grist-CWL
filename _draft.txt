@@ -1,0 +1,2 @@
+1- CURL > listingDirectory (get output path)
+2- Write conf-tutorial

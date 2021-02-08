@@ -1,0 +1,21 @@
+#####################
+# conf-tutorial.yml #
+#####################
+sample: HSMA33MX
+outdir: outputs.tutorial/
+metagenome_trim_memory: 1e9
+# sourmash_database_glob_pattern: gtdb-r95.nucleotide-k31-scaled1000.sbt.zip
+
+######################
+#        END         #
+######################
+
+grist_directory: grist
+curl_url: https://osf.io/4n3m5/download
+curl_output: gtdb-r95.nucleotide-k31-scaled1000.sbt.zip
+sample_name: HSMA33MX
+showconf_cmd: showconf
+summarize_command: summarize
+conf_file:
+    class: File
+    path: conf-tutorial.yml
