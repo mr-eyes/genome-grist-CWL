@@ -15,12 +15,14 @@ outputs:
   db_zip:
     type: File
     outputSource: curl/zip_file
-  # confYaml:
-  #   type: File
-  #   outputSource: confTutorial/conf_tutorial_yaml
+
   summarize_html:
     type: File
     outputSource: summarize/html_report
+
+  fastqDumpErrorTXT:
+    type: File
+    outputSource: summarize/fastqDumpError
     
 
 steps:
@@ -30,16 +32,6 @@ steps:
       curl_url: curl_url
       curl_output: curl_output
     out: [ zip_file ]
-    
-    
-  # confTutorial:
-  #   run: conf_yaml.cwl
-  #   in:
-  #     sample_name: sample_name
-  #     outdir: outdir
-  #     sourmash_database_glob_pattern: curl/zip_file
-  #     metagenome_trim_memory: metagenome_trim_memory
-  #   out: [ conf_tutorial_yaml ]
       
     
   summarize:
@@ -49,4 +41,4 @@ steps:
       metagenome_trim_memory: metagenome_trim_memory
       outdir: outdir
       sourmash_database_glob_pattern: curl/zip_file
-    out: [ html_report ]
+    out: [ html_report, fastqDumpError ]
