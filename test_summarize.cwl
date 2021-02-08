@@ -2,7 +2,7 @@
 
 cwlVersion: v1.0
 class: CommandLineTool
-baseCommand: ["ls", "-lh"]
+baseCommand: ["cat", "conf-tutorial.yml"]
 
 hints:
   DockerRequirement:
