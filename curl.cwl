@@ -4,6 +4,9 @@ cwlVersion: v1.0
 class: CommandLineTool
 baseCommand: curl
 
+hints:
+  DockerRequirement:
+    dockerPull: "curlimages/curl:latest"
 inputs:
   curl_url:
     type: string
