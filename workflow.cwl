@@ -10,7 +10,6 @@ inputs:
   outdir: string
   metagenome_trim_memory: float
 
-
 outputs:
   db_zip:
     type: File
@@ -20,7 +19,6 @@ outputs:
     type: File
     outputSource: summarize/html_report
     
-
 steps:
   curl:
     run: curl.cwl
@@ -29,7 +27,6 @@ steps:
       curl_output: curl_output
     out: [ zip_file ]
       
-    
   summarize:
     run: summarize.cwl
     in:
