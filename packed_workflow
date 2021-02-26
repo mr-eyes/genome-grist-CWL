@@ -1,0 +1,67 @@
+class: Workflow
+cwlVersion: v1.0
+inputs:
+- {id: curl_url, type: string}
+- {id: curl_output, type: string}
+- {id: sample_name, type: string}
+- {id: outdir, type: string}
+- {id: metagenome_trim_memory, type: float}
+outputs:
+- {id: db_zip, outputSource: curl/zip_file, type: File}
+- {id: summarize_html, outputSource: summarize/html_report, type: File}
+requirements:
+- {class: SubworkflowFeatureRequirement}
+- {class: InlineJavascriptRequirement}
+steps:
+- id: curl
+  in:
+  - {id: curl_url, source: curl_url}
+  - {id: curl_output, source: curl_output}
+  out: [zip_file]
+  run:
+    baseCommand: curl
+    class: CommandLineTool
+    cwlVersion: v1.0
+    inputs:
+    - id: curl_url
+      inputBinding: {position: 1, prefix: -L}
+      type: string
+    - id: curl_output
+      inputBinding: {position: 2, prefix: -o}
+      type: string
+    outputs:
+    - id: zip_file
+      outputBinding: {glob: gtdb-r95.nucleotide-k31-scaled1000.sbt.zip}
+      type: File
+    requirements:
+    - {class: InlineJavascriptRequirement}
+- id: summarize
+  in:
+  - {id: sample_name, source: sample_name}
+  - {id: metagenome_trim_memory, source: metagenome_trim_memory}
+  - {id: outdir, source: outdir}
+  - {id: sourmash_database_glob_pattern, source: curl/zip_file}
+  out: [html_report]
+  run:
+    baseCommand: [genome-grist, run, conf-tutorial.yml, summarize]
+    class: CommandLineTool
+    cwlVersion: v1.0
+    hints:
+      DockerRequirement: {dockerPull: 'mlim13/ggristv2:tag2'}
+    inputs:
+    - {id: sample_name, type: string}
+    - {id: outdir, type: string}
+    - {id: metagenome_trim_memory, type: float}
+    - {id: sourmash_database_glob_pattern, type: File}
+    outputs:
+    - id: html_report
+      outputBinding: {glob: outputs.tutorial/reports/report-$(inputs.sample_name).html}
+      type: File
+    requirements:
+    - class: InitialWorkDirRequirement
+      listing:
+      - $(inputs.sourmash_database_glob_pattern)
+      - {entry: "sample:\n  - $(inputs.sample_name)\noutdir: $(inputs.outdir)\nmetagenome_trim_memory:
+          $(inputs.metagenome_trim_memory)\nsourmash_database_glob_pattern: $(inputs.sourmash_database_glob_pattern.basename)",
+        entryname: conf-tutorial.yml}
+    - {class: InlineJavascriptRequirement}
